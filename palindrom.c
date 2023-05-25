@@ -6,7 +6,7 @@
 
 #define MAX_LENGTH 100
 
-int is_palindrom(const char *word) {
+int is_palindrome(const char *word) {
     int length = strlen(word);
     for (int i = 0; i < length / 2; i++) {
         if (word[i] != word[length - i - 1]) {
@@ -68,9 +68,11 @@ int main() {
     }
 
     while (fgets(sentence, MAX_LENGTH, file) != NULL) {
-        sentence[strcspn(sentence, "\n")] = '\0'; // Удаляем символ новой строки, если он присутствует
+        // Удаляем символ новой строки, если он присутствует
+        sentence[strcspn(sentence, "\n")] = '\0';
 
-        remove_punctuation(sentence); // Удаляем знаки препинания из предложения
+        // Удаляем знаки препинания из предложения
+        remove_punctuation(sentence);
 
         remove_spaces(sentence);  // Удаляем пробелы между словами
 
@@ -90,7 +92,7 @@ int main() {
                 char substring[MAX_LENGTH];
                 strncpy(substring, text + i, j - i);
                 substring[j - i] = '\0';
-                if (is_palindrom(substring) && strlen(substring) > 3) {
+                if (is_palindrome(substring) && strlen(substring) > 3) {
                     printf("%s\n", substring);
                     found = 1; // Устанавливаем флаг, что палиндром был найден
                     break; // Переходим к следующему предложению
@@ -99,6 +101,10 @@ int main() {
             if (found) {
                 break; // Если палиндром был найден, переходим к следующему предложению
             }
+        }
+
+        if (!found) {
+            printf("В предложении нет слов-палиндромов.\n");
         }
 
         // Очищаем текст для следующего предложения
