@@ -68,11 +68,9 @@ int main() {
     }
 
     while (fgets(sentence, MAX_LENGTH, file) != NULL) {
-        // Удаляем символ новой строки, если он присутствует
-        sentence[strcspn(sentence, "\n")] = '\0';
+        sentence[strcspn(sentence, "\n")] = '\0'; // Удаляем символ новой строки, если он присутствует
 
-        // Удаляем знаки препинания из предложения
-        remove_punctuation(sentence);
+        remove_punctuation(sentence); // Удаляем знаки препинания из предложения
 
         remove_spaces(sentence);  // Удаляем пробелы между словами
 
